@@ -23,7 +23,7 @@ public class LabelController {
     @GetMapping("/pageList")
     public Result<PageResult<Label>> getLabelPage(Label label,
                                                   @RequestParam(name = "pageNum", defaultValue = "1") Integer pageNum,
-                                                  @RequestParam(name = "pageNum", defaultValue = "5") Integer pageSize) {
+                                                  @RequestParam(name = "pageSize", defaultValue = "5") Integer pageSize) {
 
         return new Result<PageResult<Label>>(true, StatusCode.SUCCESS, labelService.getLabelList(label, pageNum, pageSize));
     }
