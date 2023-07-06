@@ -13,6 +13,7 @@
         <module name="massif-base" />
         <module name="massif-main-system-core" />
         <module name="massif-common" />
+        <module name="massif-article" />
         <module name="massif-main-system-start" />
       </profile>
     </annotationProcessing>

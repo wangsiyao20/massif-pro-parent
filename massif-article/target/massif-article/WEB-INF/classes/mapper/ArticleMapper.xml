@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.massif.article.mapper.ArticleMapper">
+
+    <insert id="addArticle">
+        insert into tb_article
+        values (
+                #{article.id}, #{article.columnId},
+                #{article.userId}, #{article.title},
+                #{article.content}, #{article.image},
+                #{article.createTime}, #{article.updateTime},
+                #{article.isPublic},
+                #{article.isTop}, #{article.visits},
+                #{article.thumbUp}, #{article.comment},
+                #{article.state}, #{article.channelId},
+                #{article.url}, #{article.type}
+               )
+    </insert>
+
+</mapper>
