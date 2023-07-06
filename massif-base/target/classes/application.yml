@@ -6,7 +6,7 @@ spring:
     name: massif-base
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
-    url: jdbc:mysql://172.22.64.1:23306/tensquare_base?characterEncoding=utf-8
+    url: jdbc:mysql://172.22.64.1:23306/massif_base?characterEncoding=utf-8
     username: root
     password: 123456
 
