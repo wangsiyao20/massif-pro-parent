@@ -2,14 +2,14 @@ package com.massif.article.controller;
 
 
 import com.massif.article.entity.Article;
+import com.massif.article.entity.model.ArticleModel;
 import com.massif.article.service.IArticleService;
 import com.massif.common.entity.Result;
 import com.massif.common.entity.StatusCode;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RestController
 public class ArticleController {
@@ -32,6 +32,14 @@ public class ArticleController {
     @PostMapping(value = "/add")
     public Result<Boolean> addArticle(@RequestBody Article article){
         return new Result<Boolean>(true, StatusCode.SUCCESS, articleService.addArticle(article));
+    }
+
+    /**
+     * 根据频道查询文章
+     */
+    @GetMapping("/getListByChannelId")
+    public Result<List<ArticleModel>> getListByChannelId(@RequestParam String id){
+        return new Result<List<ArticleModel>>(true, StatusCode.SUCCESS, articleService.getListByChannelId(id));
     }
 
 }

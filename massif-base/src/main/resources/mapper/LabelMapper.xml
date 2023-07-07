@@ -6,5 +6,10 @@
 
     <select id="getLabelList" resultType="com.massif.base.entity.Label">
         select id, labelname as labelName, state, count, recommend, fans from tb_label
+        <where>
+            <!-- 动态sql中不能使用 && , 只能使用 and -->
+            <if test="id != null and id != ''">id = #{id}</if>
+            <if test="labelName != null and labelName != ''">and labelname = #{labelName}</if>
+        </where>
     </select>
 </mapper>
