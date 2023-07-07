@@ -12,5 +12,5 @@ public interface LabelMapper {
     /**
      * 获取标签列表
      */
-    List<Label> getLabelList(@Param("label") Label label);
+    List<Label> getLabelList(Label label);
 }

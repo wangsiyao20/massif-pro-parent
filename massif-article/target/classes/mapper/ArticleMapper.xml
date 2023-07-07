@@ -18,5 +18,39 @@
                 #{article.url}, #{article.type}
                )
     </insert>
+    
+    <resultMap id="articleModel" type="com.massif.article.entity.model.ArticleModel">
+        <id property="id" column="id" />
+        <result property="columnId" column="columnid" />
+        <result property="userId" column="userid" />
+        <result property="title" column="title" />
+        <result property="content" column="content" />
+        <result property="image" column="image" />
+        <result property="createTime" column="createtime" />
+        <result property="updateTime" column="updatetime" />
+        <result property="isPublic" column="ispublic" />
+        <result property="isTop" column="istop" />
+        <result property="visits" column="visits" />
+        <result property="thumbUp" column="thumbup" />
+        <result property="comment" column="comment" />
+        <result property="state" column="state" />
+        <result property="comment" column="comment" />
+        <result property="channelId" column="channelid" />
+        <result property="url" column="url" />
+        <result property="type" column="type" />
+        <result property="channel.id" column="cid" />
+        <result property="channel.channelName" column="channel_name" />
+        <result property="channel.state" column="state" />
+    </resultMap>
+
+
+    <select id="getListByChannelId" resultMap="articleModel">
+
+        select c.id as cid, c.channel_name, a.*
+        from tb_article a
+        left join tb_channel c on a.channelid = c.id
+        where c.id = #{id}        
+
+    </select>
 
 </mapper>
