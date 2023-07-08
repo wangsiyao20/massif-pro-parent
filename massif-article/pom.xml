@@ -8,6 +8,12 @@
 
   <name>massif-article (ssm)</name>
 
+  <properties>
+    <maven.compiler.source>1.8</maven.compiler.source>
+    <maven.compiler.target>1.8</maven.compiler.target>
+  </properties>
+
+
   <dependencies>
 
     <!-- 用一用common里的工具 -->
