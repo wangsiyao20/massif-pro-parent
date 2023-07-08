@@ -10,6 +10,10 @@ spring:
     username: root
     password: 123456
 
+  mvc:
+    pathmatch:
+      matching-strategy: ant_path_matcher   #  为了springfox依赖中swagger可以使用
+
 mybatis:
   type-aliases-package: com.massif.base.entity
   mapper-locations: classpath:/mapper/*.xml
@@ -23,3 +27,4 @@ pagehelper:
 logging:
   level:
     org.mybatis: DEBUG
+
