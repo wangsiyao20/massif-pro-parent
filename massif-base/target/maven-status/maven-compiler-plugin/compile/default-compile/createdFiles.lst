@@ -1,0 +1,9 @@
+com\massif\base\BaseApplication.class
+com\massif\base\config\SwaggerConfig$1.class
+com\massif\base\handler\BaseExceptionHandler.class
+com\massif\base\config\SwaggerConfig.class
+com\massif\base\entity\Label.class
+com\massif\base\mapper\LabelMapper.class
+com\massif\base\controller\LabelController.class
+com\massif\base\service\impl\LabelServiceImpl.class
+com\massif\base\service\ILabelService.class

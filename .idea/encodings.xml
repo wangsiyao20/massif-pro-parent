@@ -9,6 +9,8 @@
     <file url="file://$PROJECT_DIR$/massif-main/massif-main-system-core/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/massif-main/massif-main-system-start/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/massif-main/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/massif-spit/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/massif-spit/src/main/resources" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/src/main/java" charset="UTF-8" />
   </component>
 </project>

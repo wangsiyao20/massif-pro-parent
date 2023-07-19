@@ -8,5 +8,12 @@
       <jdbc-url>jdbc:mysql://172.22.64.1:23306/massif_article</jdbc-url>
       <working-dir>$ProjectFileDir$</working-dir>
     </data-source>
+    <data-source source="LOCAL" name="mongodb@172.23.128.1" uuid="ae0905c1-ed96-485e-a5a9-8e0141319806">
+      <driver-ref>mongo</driver-ref>
+      <synchronize>true</synchronize>
+      <jdbc-driver>com.dbschema.MongoJdbcDriver</jdbc-driver>
+      <jdbc-url>mongodb://172.23.128.1:27017</jdbc-url>
+      <working-dir>$ProjectFileDir$</working-dir>
+    </data-source>
   </component>
 </project>

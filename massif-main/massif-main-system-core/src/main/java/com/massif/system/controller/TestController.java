@@ -70,6 +70,18 @@ public class TestController {
         map.put("8", "3");
 //        map.entrySet().forEach(System.out::println);
         System.out.println(map);        // 这个 输出为 {null=2, 2=5, 3=null, 6=7, 8=3}     // 天啊，这个也可以输出值，因为HashMap重写的toString
+
+        new Vector<String>();
+
+
+//        // java变量是块作用域
+//        if(true){
+//            int testX = 10;
+//            System.out.println(testX);
+//        }
+//        int testX = 20;
+//        System.out.println(testX);
+
     }
 
     @FunctionalInterface
