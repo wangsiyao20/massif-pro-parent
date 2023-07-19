@@ -1,0 +1,14 @@
+<component name="ArtifactManager">
+  <artifact type="war" name="massif-article:war">
+    <output-path>$PROJECT_DIR$/massif-article/target</output-path>
+    <properties id="maven-jee-properties">
+      <options>
+        <module>massif-article</module>
+        <packaging>war</packaging>
+      </options>
+    </properties>
+    <root id="archive" name="massif-article.war">
+      <element id="artifact" artifact-name="massif-article:war exploded" />
+    </root>
+  </artifact>
+</component>
