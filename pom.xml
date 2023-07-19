@@ -27,6 +27,7 @@
         <module>massif-common</module>
         <module>massif-base</module>
         <module>massif-spit</module>
+        <module>massif-oauth2</module>
     </modules>
     <dependencyManagement>
         <dependencies>
