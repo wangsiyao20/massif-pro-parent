@@ -11,6 +11,7 @@
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <module name="massif-base" />
+        <module name="massif-spit" />
         <module name="massif-main-system-core" />
         <module name="massif-common" />
         <module name="massif-article" />
