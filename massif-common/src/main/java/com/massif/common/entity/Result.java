@@ -50,6 +50,12 @@ public class Result<T> implements Serializable{
         this.data = data;
     }
 
+    public Result<T> ok(T data){
+        this.code = 200;
+        this.data = data;
+        return this;
+    }
+
     public Integer getCode() {
         return code;
     }

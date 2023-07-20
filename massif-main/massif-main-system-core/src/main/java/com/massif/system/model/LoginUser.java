@@ -12,6 +12,9 @@ import java.util.Collection;
 import java.util.List;
 import java.util.Set;
 
+/**
+ * 自定义登录信息类，代替security提供的User类（这个User类也是实现UserDetails）
+ */
 @Data
 @NoArgsConstructor
 @AllArgsConstructor

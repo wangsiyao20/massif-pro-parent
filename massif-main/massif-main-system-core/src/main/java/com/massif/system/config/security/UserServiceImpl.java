@@ -3,7 +3,6 @@ package com.massif.system.config.security;
 import com.massif.system.entity.SysUser;
 import com.massif.system.mapper.SysUserMapper;
 import com.massif.system.model.LoginUser;
-import com.massif.system.service.ISysRoleService;
 import com.massif.system.service.ISysUserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
@@ -29,9 +28,6 @@ public class UserServiceImpl implements UserDetailsService {
     private ISysUserService sysUserService;
 
     @Autowired
-    private ISysRoleService sysRoleService;
-
-    @Autowired
     private SysUserMapper sysUserMapper;
 
 
@@ -44,7 +40,7 @@ public class UserServiceImpl implements UserDetailsService {
         // 请注意，实现 `UserDetailsService` 接口并重写 `loadUserByUsername()` 方法，是实现身份验证的一部分，而不是全部。`loadUserByUsername()` 方法的作用是从数据源中加载 `UserDetails` 对象，因此它既可以用于基于表单的登录身份验证，也可以用于许多其他形式的身份验证，例如 OAuth2、SAML 等。而 `authenticate()` 方法是使用凭据进行身份验证的主要方法，在大多数情况下，你将需要实现此方法，以便在身份验证对话期间处理和验证用户凭据。
         Optional<SysUser> user = sysUserService.getByUsername(username);
         user.orElseThrow(() -> new RuntimeException("未检测到该用户"));
-        user.get().setPassword(passwordEncoder.encode(user.get().getPassword()));
+        user.get().setPassword(passwordEncoder.encode(user.get().getPassword()));   // 密码加密
         LoginUser loginUser = new LoginUser(user.get());
         // 查询该用户下的角色，通过用户角色关联表查
         List<Long> roleIds = getRoleIdsByUserId(user.get().getUserId());
