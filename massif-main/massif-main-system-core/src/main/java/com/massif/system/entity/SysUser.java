@@ -1,6 +1,7 @@
 package com.massif.system.entity;
 
 import com.baomidou.mybatisplus.annotation.IdType;
+import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableId;
 import java.time.LocalDateTime;
 import java.io.Serializable;
@@ -58,7 +59,8 @@ public class SysUser implements Serializable {
     /**
      * 手机号码
      */
-    private String phonenumber;
+    @TableField("phonenumber")
+    private String phoneNumber;
 
     /**
      * 用户性别（0男 1女 2未知）
