@@ -50,10 +50,19 @@ public class Result<T> implements Serializable{
         this.data = data;
     }
 
-    public Result<T> ok(T data){
-        this.code = 200;
-        this.data = data;
-        return this;
+    public static <T> Result<T> ok(T data){
+        Result<T> result = new Result<>();
+        result.code = 200;
+        result.message = "操作成功";
+        result.data = data;
+        return result;
+    }
+
+    public static <T> Result<T> ok(){
+        Result<T> result = new Result<>();
+        result.code = 200;
+        result.message = "操作成功";
+        return result;
     }
 
     public Integer getCode() {

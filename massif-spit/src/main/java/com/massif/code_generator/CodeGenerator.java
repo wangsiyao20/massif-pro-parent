@@ -1,4 +1,4 @@
-package com.massif.system;
+package com.massif.code_generator;
 
 import com.baomidou.mybatisplus.annotation.DbType;
 import com.baomidou.mybatisplus.core.exceptions.MybatisPlusException;
