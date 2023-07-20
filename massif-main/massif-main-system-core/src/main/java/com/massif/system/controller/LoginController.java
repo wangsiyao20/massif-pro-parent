@@ -4,16 +4,13 @@ import com.massif.system.config.redis.RedisService;
 import com.massif.system.entity.SysUser;
 import com.massif.system.model.LoginUser;
 import com.massif.system.utils.JwtUtil;
-import com.massif.system.utils.Result;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.HashMap;
-import java.util.Map;
 
 @RestController
 @RequestMapping("/user")
@@ -71,7 +68,7 @@ public class LoginController {
         HashMap<String, String> map = new HashMap<>();
         map.put("token", jwt);
 
-        Result<Map<String, String>> mapResult = new Result<>();
+//        Result<Map<String, String>> mapResult = new Result<>();
         System.out.println(jwt);
         return jwt;
     }

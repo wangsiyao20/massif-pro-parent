@@ -1,0 +1,11 @@
+server:
+  port: 11001
+
+spring:
+  application:
+    name: massif-spit
+
+  data:
+    mongodb:
+      host: 172.23.128.1
+      database: spitdb
