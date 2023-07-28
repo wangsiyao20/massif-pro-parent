@@ -1,16 +1,46 @@
-<!--<!DOCTYPE html>-->
-<!--<html lang="en">-->
-<!--<head>-->
-<!--    <meta charset="UTF-8">-->
-<!--    <title>登录</title>-->
-<!--</head>-->
-<!--<body>-->
-<!--<h1>登录</h1>-->
-<!--<form action="/user/login" method="post">-->
-<!--    用户名：<input type="text" name="username">-->
-<!--    <br>-->
-<!--    密码：<input type="text" name="password">-->
-<!--    <button type="submit">登录</button>-->
-<!--</form>-->
-<!--</body>-->
-<!--</html>-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>登录</title>
+
+    <!--  在项目中，路径前可加/ 表示从static开始的，static也可看作根目录，虽然在resource目录下  -->
+    <!--  这是按照相对路径找，因为js文件夹和.html文件同级  -->
+    <script src="js/jquery-3.3.1.min.js"></script>
+    <link rel="stylesheet" href="css/table.css"/>
+
+</head>
+<body>
+
+<ul>
+    <li>登录</li>
+</ul>
+
+<form action="/user/login" method="post">
+    <!-- 登陆 -->
+    <table border id="DengLu">
+        <tr>
+            <td class="wenzi">用户名</td>
+            <td colspan="3">
+                <label>
+                    <input type="text" name="username"/>
+                </label>
+            </td>
+        </tr>
+        <tr>
+            <td class="wenzi">密码</td>
+            <td colspan="3"><label>
+                <input type="password" class="psw" name="password"/>
+            </label></td>
+        </tr>
+            <td colspan="4" style="font-size: 0">
+                <button type="submit" id="Login">登陆</button>
+            </td>
+        </tr>
+    </table>
+</form>
+
+
+<script src="js/table.js"></script>
+</body>
+</html>

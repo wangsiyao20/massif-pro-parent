@@ -50,7 +50,7 @@ public class SysUserServiceImpl extends ServiceImpl<SysUserMapper, SysUser> impl
         // 生成验证码
         String verifyCode = RandomUtil.randomNumbers(6);
 
-        // 保存验证码到session  todo 用token代替session
+        // 保存验证码到session  todo 用token代替session，保存验证码到redis
         request.getSession().setAttribute("verifyCode", verifyCode);    // key应为常量，反正以后不用session，无所谓了
         logger.info("验证码为：" + verifyCode);
 
@@ -107,6 +107,7 @@ public class SysUserServiceImpl extends ServiceImpl<SysUserMapper, SysUser> impl
 
         SysUser sysUser = new SysUser();
         sysUser.setNickName(nickName);
+        sysUser.setUserName(phoneNumber);   // 数据库中用户名设置的非空，暂时设置成手机号吧
         sysUser.setPhoneNumber(phoneNumber);
 
         baseMapper.insert(sysUser);
