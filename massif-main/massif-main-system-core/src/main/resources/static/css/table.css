@@ -1,0 +1,59 @@
+*{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+ul{
+    font-size: 0;
+    text-align: center;
+    margin: 100px auto 0;
+}
+li{
+    font-size: 18px;
+    font-weight: bold;
+    border: 1px solid #8C8C8C;
+    border-bottom: none;
+
+    width: 500px;
+    height: 50px;
+    line-height: 50px;
+    display: inline-block;
+
+    background-color: beige;
+}
+
+
+tr{
+    height: 30px;
+    text-align: center;
+}
+td{
+    width: 500px;
+    height: 30px;
+}
+.wenzi{  width: 25%;  }
+input{
+    width: 99%;
+    height: 90%;
+    font-size: 14px;
+}
+button{
+    border-radius: 5px;
+    outline: none;
+    box-shadow: none;
+}
+
+#DengLu{
+    margin: 0 auto;
+    width: 500px;
+    height: 200px;
+}
+
+#Login{
+    height: 80%;
+    font-size: 14px;
+    color: #262626;
+    padding: 0 60px;
+    margin: 0 30px;
+}
+

@@ -1,9 +1,10 @@
 package com.massif.system.controller;
 
+import cn.hutool.core.util.RandomUtil;
+import com.massif.common.entity.Result;
 import com.massif.system.config.redis.RedisService;
 import com.massif.system.entity.SysUser;
 import com.massif.system.model.LoginUser;
-import com.massif.system.utils.JwtUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -11,6 +12,7 @@ import org.springframework.security.core.Authentication;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.HashMap;
+import java.util.Map;
 
 @RestController
 @RequestMapping("/user")
@@ -43,7 +45,7 @@ public class LoginController {
 
 
     @PostMapping("/login")
-    public String login(@RequestParam String username, @RequestParam("password") String password){
+    public Result<Map<String, String>> login(@RequestParam String username, @RequestParam("password") String password){
 
 
         // 将用户名和密码封装到SysUser对象中
@@ -57,20 +59,21 @@ public class LoginController {
             throw new RuntimeException("用户名或密码错误");
         }
 
-        // 使用userId生成Token
+        // 获取security封装好的用户信息
         LoginUser loginUser = (LoginUser) authenticate.getPrincipal();
+
+        // 使用userId生成Token
         String userId = loginUser.getUser().getUserId().toString();
-        String jwt = JwtUtil.createJWT(userId);
+        String token = userId + RandomUtil.randomString(4).toString();    // 可用jwt等生成token
+
         // 存redis
-        redisService.setCacheObject("login:"+userId, loginUser);
+        redisService.setCacheObject(token, loginUser);
 
         // 把token响应回去
-        HashMap<String, String> map = new HashMap<>();
-        map.put("token", jwt);
+        Map<String, String> map = new HashMap<>();
+        map.put("token", token);
 
-//        Result<Map<String, String>> mapResult = new Result<>();
-        System.out.println(jwt);
-        return jwt;
+        return Result.ok(map);
     }
 
 }

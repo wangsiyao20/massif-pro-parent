@@ -56,23 +56,28 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http
-//                .formLogin()    // 表单登录
+                .formLogin()    // 表单登录
                 // 自定义登录页面
-//                .loginPage("/login.html")
-                // 点击提交表单后的跳转页
-//                .loginProcessingUrl("/user/login")
+                .loginPage("/login.html")
+                // 点击提交表单后的跳转页，设置上这个就是表单跳转到SpringSecurity的地方处理，注释掉就可以跳转到自己的地方，但url要对应提交的url
+                // 即并没有走我定义的那个 /user/login 那个接口， 而是把这个告诉security，走它的逻辑
+                .loginProcessingUrl("/user/login")
 //                .successHandler(new MyAuthenticationSuccessHandler())
 //                .and()
 //                .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)
-//                .and()
+                .and()
                 // 请求授权
                 .authorizeRequests()
                 // anonymous()只允许匿名访问，不允许登陆后访问，所以登录接口加这个
-                .antMatchers("/user/login").anonymous()
+                .antMatchers("/login.html").anonymous()
                 .antMatchers("/sms/sendCode").anonymous()
                 .antMatchers("/sms/smsLogin").anonymous()
                 // permitAll()表示匿名和登录后都可访问，所以不适合给登录接口加这个
 //                .antMatchers("/user/in").permitAll()
+                .antMatchers("/user/login").permitAll()
+                // 找了半天的问题原来是css和js没开放权限而被拦截导致页面加载不上样式且登陆后访问css或js
+                .antMatchers("/css/**").permitAll()
+                .antMatchers("/js/**").permitAll()
                 // 所有请求
                 .anyRequest()
                 // 都需要身份认证
@@ -81,7 +86,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .and().cors()
                 .and().csrf().disable();
 
-        http.formLogin().permitAll();
+//        http.formLogin().permitAll();
     }
 
 }
