@@ -1,16 +1,25 @@
 package com.massif.system.controller;
 
+import cn.hutool.core.bean.BeanUtil;
 import cn.hutool.core.util.RandomUtil;
+import com.alibaba.fastjson.JSONObject;
 import com.massif.common.entity.Result;
+import com.massif.common.entity.StatusCode;
 import com.massif.system.config.redis.RedisService;
 import com.massif.system.entity.SysUser;
 import com.massif.system.model.LoginUser;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.authentication.BadCredentialsException;
+import org.springframework.security.authentication.LockedException;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
+import org.springframework.security.core.AuthenticationException;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpServletResponse;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -44,20 +53,42 @@ public class LoginController {
     }
 
 
+
+    @CrossOrigin
     @PostMapping("/login")
-    public Result<Map<String, String>> login(@RequestParam String username, @RequestParam("password") String password){
+    public Result<?> login(@RequestBody SysUser user, HttpServletResponse response){
 
 
-        // 将用户名和密码封装到SysUser对象中
-        SysUser user = new SysUser();
-        user.setUserName(username);
-        user.setPassword(password);
+//        // 将用户名和密码封装到SysUser对象中
+//        SysUser user = new SysUser();
+//        user.setUserName(username);
+//        user.setPassword(password);
+        Authentication authenticate = null;
+        try {
+            UsernamePasswordAuthenticationToken authenticationToken = new UsernamePasswordAuthenticationToken(user.getUserName(), user.getPassword());
+            authenticate = authenticationManager.authenticate(authenticationToken);
+        } catch (AuthenticationException e){
+            // 密码错误
+            if(e instanceof BadCredentialsException){
+                // 密码登录错误, 这里使用人为构造错误码来让前端捕获
+                String errorMessage = "密码输入错误，请重新输入密码。";
+                Result<Object> result = new Result<>();
+                result.setCode(StatusCode.LOGIN_ERROR);
+                result.setMessage(errorMessage);
+                // 人为在header中设置一个400错误的状态
+                response.setStatus(HttpStatus.BAD_REQUEST.value());
+                return result;
+            } else if (e instanceof LockedException){   // 账号被锁定
+                //  账号已被锁定，这里采用抛出异常让前端捕获，这个异常是500
+                throw new RuntimeException("账号已被锁定");
+            } else {
+                // 其他登录错误问题，这里采用直接抛出让前端捕获
+                throw new RuntimeException("登录失败");
+            }
 
-        UsernamePasswordAuthenticationToken authenticationToken = new UsernamePasswordAuthenticationToken(user.getUserName(), user.getPassword());
-        Authentication authenticate = authenticationManager.authenticate(authenticationToken);
-        if(null == authenticate){
-            throw new RuntimeException("用户名或密码错误");
+
         }
+
 
         // 获取security封装好的用户信息
         LoginUser loginUser = (LoginUser) authenticate.getPrincipal();
@@ -66,14 +97,16 @@ public class LoginController {
         String userId = loginUser.getUser().getUserId().toString();
         String token = userId + RandomUtil.randomString(4).toString();    // 可用jwt等生成token
 
-        // 存redis
+        // 把用户信息存redis，key为token
         redisService.setCacheObject(token, loginUser);
 
-        // 把token响应回去
-        Map<String, String> map = new HashMap<>();
-        map.put("token", token);
+        // 把token以及用户信息响应回去
+        SysUser sysUser = loginUser.getUser();
+        sysUser.setPassword(null);  // 返回前端时先把密码置空
+        JSONObject obj = new JSONObject();
+        obj.put("userInfo", loginUser.getUser());
+        obj.put("token", token);
 
-        return Result.ok(map);
+        return Result.ok(obj);
     }
-
 }
