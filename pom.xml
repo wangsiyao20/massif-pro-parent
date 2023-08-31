@@ -14,7 +14,7 @@
         <spring-boot.mybatis>2.2.0</spring-boot.mybatis>
         <mybatis-plus.version>3.5.0</mybatis-plus.version>
         <spring-boot-maven-plugin.version>2.6.13</spring-boot-maven-plugin.version>
-        <lombok.version>1.18.12</lombok.version>
+        <lombok.version>1.18.26</lombok.version>
         <mysql-connector-java.verson>8.0.28</mysql-connector-java.verson>
 
         <maven.compiler.source>1.8</maven.compiler.source>

@@ -56,12 +56,15 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http
+                //关闭跨域请求
+                .cors()
+                .and().csrf().disable()
                 .formLogin()    // 表单登录
                 // 自定义登录页面
                 .loginPage("/login.html")
                 // 点击提交表单后的跳转页，设置上这个就是表单跳转到SpringSecurity的地方处理，注释掉就可以跳转到自己的地方，但url要对应提交的url
-                // 即并没有走我定义的那个 /user/login 那个接口， 而是把这个告诉security，走它的逻辑
-                .loginProcessingUrl("/user/login")
+                // 注释掉即并没有走我定义的那个 /user/login 那个接口， 而是把这个告诉security，走它的逻辑
+//                .loginProcessingUrl("/user/login")
 //                .successHandler(new MyAuthenticationSuccessHandler())
 //                .and()
 //                .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)
@@ -81,10 +84,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 // 所有请求
                 .anyRequest()
                 // 都需要身份认证
-                .authenticated()
-                //关闭跨域请求
-                .and().cors()
-                .and().csrf().disable();
+                .authenticated();
+
 
 //        http.formLogin().permitAll();
     }

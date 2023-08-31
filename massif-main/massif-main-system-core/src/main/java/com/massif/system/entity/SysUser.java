@@ -7,8 +7,11 @@ import java.time.LocalDateTime;
 import java.io.Serializable;
 
 import com.baomidou.mybatisplus.annotation.TableName;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
+import lombok.Getter;
+import lombok.Setter;
 
 /**
  * <p>
@@ -39,6 +42,7 @@ public class SysUser implements Serializable {
     /**
      * 用户账号
      */
+    @JsonProperty("account")
     private String userName;
 
     /**
@@ -75,6 +79,7 @@ public class SysUser implements Serializable {
     /**
      * 密码
      */
+    @JsonProperty("password")
     private String password;
 
     /**
@@ -121,6 +126,5 @@ public class SysUser implements Serializable {
      * 备注
      */
     private String remark;
-
 
 }

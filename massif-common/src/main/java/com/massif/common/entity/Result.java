@@ -1,5 +1,8 @@
 package com.massif.common.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import org.springframework.http.HttpStatus;
+
 import java.io.Serializable;
 
 /**
@@ -64,6 +67,7 @@ public class Result<T> implements Serializable{
         result.message = "操作成功";
         return result;
     }
+
 
     public Integer getCode() {
         return code;

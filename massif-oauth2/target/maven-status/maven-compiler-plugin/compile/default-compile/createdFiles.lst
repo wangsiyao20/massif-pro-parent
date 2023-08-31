@@ -1,0 +1,3 @@
+com\massif\oauth2\controller\SmsLogin.class
+com\massif\oauth2\OAuth2Application.class
+com\massif\oauth2\config\OAuth2Config.class
